@@ -1,7 +1,12 @@
 import {MONGO_DB} from '../configuration/configuration';
 import {connect} from 'mongoose';
 
-connect(MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true, keepAlive: true, keepAliveInitialDelay: 300000});
+connect(MONGO_DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    keepAlive: true,
+    keepAliveInitialDelay: 300000,
+    useFindAndModify: false});
 
 const toObject = (item) => item.toObject();
 const listToObject = (list) => list.map(toObject);
@@ -9,7 +14,7 @@ const listToObject = (list) => list.map(toObject);
 const getAll = (model) => () => model.find().then(listToObject);
 const getById = (model) => (id) => model.findOne({ _id: id }).then(toObject);
 const getBy = (model) => (query) => model.find(query).then(listToObject);
-const update = (model) => (entity) => model.findOneAndUpdate(entity.id, entity, { new: true });
+const update = (model) => (id, entity) => model.findOneAndUpdate({ _id: id }, entity, { new: true });
 const create = (model) => (entity) => new model(entity).save().then(toObject);
 const remove = (model) => (id) => model.deleteOne({ _id: id });
 
