@@ -1,4 +1,5 @@
 import {Schema, model} from 'mongoose';
+import {AuditSchema} from "./AuditModel";
 
 const schema = new Schema({
     name: {
@@ -8,7 +9,8 @@ const schema = new Schema({
     },
     email: {type: String, required: true},
     password: {type: String, required: true},
-    role: [String]
+    role: [String],
+    audit: AuditSchema
 });
 
 export default model('User', schema);

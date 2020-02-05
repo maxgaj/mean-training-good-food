@@ -1,0 +1,54 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\7515975\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Users\7515975\WebstormProjects\mean-training-good-food\node_modules\.bin;C:\Program Files\MongoDB\Server\3.0\bin;C:\Python27\;C:\Python27\Scripts;C:\app\7515975\product\18.0.0\dbhomeXE\bin;C:\devenv\java\jdk-12.0.2\bin;C:\devenv\maven\apache-maven-3.6.1\bin;C:\Program Files (x86)\Centura\Deploy;C:\ProgramData\Oracle\Java\javapath;C:\Oracle\11.2.0.3\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\LCM-ANMC\WORKSTATIONMANAGEMENT;C:\Program Files (x86)\PCMX-32\bin;C:\Program Files (x86)\upic32\sys;C:\Program Files (x86)\Common Files\ISIS\Isiscomm\w3\lib;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Users\7515975\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\7515975\AppData\Local\Microsoft\WindowsApps;C:\Users\7515975\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\7515975\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\7515975\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.13.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: unable to get local issuer certificate
+      at TLSSocket.onConnectSecure (_tls_wrap.js:1321:34)
+      at TLSSocket.emit (events.js:210:5)
+      at TLSSocket._finishInit (_tls_wrap.js:794:8)
+      at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:608:12)
+
+npm manifest: 
+  {
+    "name": "mean-training-good-food",
+    "version": "1.0.0",
+    "main": "main.js",
+    "repository": "https://github.com/maxgaj/mean-training-good-food.git",
+    "author": "Maxime Gaj <maxime.gaj@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+      "start": "nodemon --exec babel-node main.js ",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+      "@babel/cli": "^7.8.3",
+      "@babel/core": "^7.8.3",
+      "@babel/node": "^7.8.3",
+      "@babel/preset-env": "^7.8.3",
+      "nodemon": "^2.0.2"
+    },
+    "dependencies": {
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "mongoose": "^5.8.9"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

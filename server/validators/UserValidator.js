@@ -19,7 +19,7 @@ export const isValidForCreation = async (req, res, next) => {
 
     if (!user.name ||
         (!user.name.user && (!user.name.first || !user.name.last))) {
-        errors.push({level: 'error', code: 'USER0004', message: 'firstname+lastname or username are mandatory'});
+        errors.push({level: 'error', code: 'USER0004', message: '(firstname and lastname) or username are mandatory'});
     }
 
     if (errors.length > 0) {

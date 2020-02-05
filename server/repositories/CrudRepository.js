@@ -1,5 +1,6 @@
 import {MONGO_DB} from '../configuration/configuration';
 import {connect} from 'mongoose';
+import {addAuditInfoOnCreation} from "../services/AuditService";
 
 connect(MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true, keepAlive: true, keepAliveInitialDelay: 300000});
 
@@ -10,7 +11,7 @@ const getAll = (model) => () => model.find().then(listToObject);
 const getById = (model) => (id) => model.findOne({ _id: id }).then(toObject);
 const getBy = (model) => (query) => model.find(query).then(listToObject);
 const update = (model) => (user) => model.findOneAndUpdate(user.id, user, { new: true });
-const create = (model) => (user) => new model(user).save().then(toObject);
+const create = (model) => (user) => new model(addAuditInfoOnCreation(user)).save().then(toObject);
 const remove = (model) => (id) => model.deleteOne({ _id: id });
 
 export default (model) => ({
