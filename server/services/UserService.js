@@ -3,8 +3,6 @@ import {omit} from 'ramda';
 import UserRepository from "../repositories/UserRepository";
 import CrudService from "./CrudService";
 
-const userCrudService = CrudService(UserRepository);
-
 const omitPassword = (user) => omit(['password'], user);
 const omitAllPassword = (users) => users.map(omitPassword);
 
@@ -16,15 +14,27 @@ const applyPatch = (patch) => (user) => {
     return user;
 };
 
-export const getUsers = () => userCrudService.getAll().then(omitAllPassword);
+const getUsers = (crudService) => () => crudService.getAll().then(omitAllPassword);
 
-export const getUserById = (id) => userCrudService.getById(id).then(omitPassword);
+const getUserById = (crudService) => (id) => crudService.getById(id).then(omitPassword);
 
-export const createUsers = (user) => userCrudService.create(user).then(omitPassword);
+const createUsers = (crudService) => (user) => crudService.create(user).then(omitPassword);
 
-export const patchUser = (id, patch) => userCrudService.update(id, applyPatch(patch)).then(omitPassword);
+const patchUser = (crudService) => (id, patch) => crudService.update(id, applyPatch(patch)).then(omitPassword);
 
-export const removeUser = (id) => userCrudService.remove(id).then(omitPassword);
+const removeUser = (crudService) => (id) => crudService.remove(id).then(omitPassword);
 
-export const getUsersByEmail = (email) => UserRepository.getByEmail(email);
+const getUsersByEmail = (email) => UserRepository.getByEmail(email);
+
+export default (loggedInUser) => {
+    const crudService = CrudService(UserRepository, loggedInUser);
+    return {
+        getUsers: getUsers(crudService),
+        getUserById: getUserById(crudService),
+        createUsers: createUsers(crudService),
+        patchUser: patchUser(crudService),
+        removeUser: removeUser(crudService),
+        getUsersByEmail: getUsersByEmail,
+    };
+};
 

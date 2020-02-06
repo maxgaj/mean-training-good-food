@@ -1,4 +1,4 @@
-import {getUsersByEmail} from "../services/UserService";
+import UserService from "../services/UserService";
 
 export const isValidForCreation = async (req, res, next) => {
     const user = req.body;
@@ -8,7 +8,7 @@ export const isValidForCreation = async (req, res, next) => {
         errors.push({level: 'error', code: 'USER0001', message: 'email is mandatory' });
     }
 
-    const usersWithSameEmail = await getUsersByEmail(user.email);
+    const usersWithSameEmail = await req.service.user.getUsersByEmail(user.email);
     if (usersWithSameEmail.length > 0){
         errors.push({level: 'error', code: 'USER0002', message: 'email should be unique' });
     }
